@@ -4,6 +4,14 @@ import CustomerList from './customers/CustomerList';
 import CustomerForm from './customers/CustomerForm';
 import CustomerDetails from './customers/CustomerDetails';
 import CustomerEdit from './customers/CustomerEdit';
+import AccountList from './accounts/AccountList';
+import AccountDetails from './accounts/AccountDetails';
+import AccountEdit from './accounts/AccountEdit';
+import AccountForm from './accounts/AccountForm';
+import TransactionDetails from './transactions/TransactionDetails';
+import TransactionEdit from './transactions/TransactionEdit';
+import TransactionForm from './transactions/TransactionForm';
+import TransactionList from './transactions/TransactionList';
 
 function App() {
   return (
@@ -28,9 +36,15 @@ function App() {
               <li className="nav-item">
                 <Link className="nav-link" to="/customers">Customers</Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/customers/add">Add Customer</Link>
-              </li>
+               <li className="nav-item">
+              <Link className="nav-link" to="/accounts">Accounts</Link>
+            </li>
+             <li className="nav-item">
+  <Link className="nav-link" to="/transactions">
+    Transactions
+  </Link>
+</li>
+
             </ul>
           </div>
         </div>
@@ -43,6 +57,15 @@ function App() {
           <Route path="/customers/add" element={<CustomerForm />} />
           <Route path="/customers/:id" element={<CustomerDetails />} />
           <Route path="/customers/edit/:id" element={<CustomerEdit />} />
+          <Route path="/accounts" element={<AccountList />} />
+          <Route path="/accounts/add" element={<AccountForm />} />
+          <Route path="/accounts/:id" element={<AccountDetails />} />
+          <Route path="/accounts/edit/:id" element={<AccountEdit />} />
+          <Route path="/transactions" element={<TransactionList />} />
+          <Route path="/transactions/add" element={<TransactionForm />} />
+          <Route path="/transactions/:id" element={<TransactionDetails />} />
+          <Route path="/transactions/edit/:id" element={<TransactionEdit />} />
+
         </Routes>
       </div>
     </>

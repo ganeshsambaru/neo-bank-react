@@ -1,15 +1,8 @@
 // src/customers/CustomerDetails.tsx
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-
-interface Customer {
-  id: number;
-  fullName: string;
-  email: string;
-  phone: string;
-  address: string;
-}
+import type { Customer } from '../types';
+import { getCustomer } from '../services/customerService'; // ✅ use getCustomer
 
 export default function CustomerDetails() {
   const { id } = useParams<{ id: string }>();
@@ -19,13 +12,12 @@ export default function CustomerDetails() {
 
   useEffect(() => {
     if (id) {
-      axios
-        .get<Customer>(`https://localhost:7168/api/customers/${id}`)
-        .then(res => {
-          setCustomer(res.data);
+      getCustomer(Number(id))
+        .then((res) => {
+          setCustomer(res.data); // ✅ axios response data
           setError('');
         })
-        .catch(err => {
+        .catch((err: unknown) => {
           console.error(err);
           setError('Could not load customer details');
         });
@@ -37,7 +29,6 @@ export default function CustomerDetails() {
 
   return (
     <div>
-      {/* Heading outside card */}
       <h2 className="mb-3">Customer Details</h2>
 
       <div className="card">
