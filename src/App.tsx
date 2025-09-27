@@ -12,6 +12,10 @@ import TransactionDetails from './transactions/TransactionDetails';
 import TransactionEdit from './transactions/TransactionEdit';
 import TransactionForm from './transactions/TransactionForm';
 import TransactionList from './transactions/TransactionList';
+import LoanForm from './loans/LoanForm';
+import LoanList from './loans/LoanList';
+import LoanDetails from './loans/LoanDetails';
+import LoanEdit from './loans/LoanEdit';
 
 function App() {
   return (
@@ -44,6 +48,10 @@ function App() {
     Transactions
   </Link>
 </li>
+<li className="nav-item">
+  <Link className="nav-link" to="/loans">Loans</Link>
+</li>
+
 
             </ul>
           </div>
@@ -65,6 +73,11 @@ function App() {
           <Route path="/transactions/add" element={<TransactionForm />} />
           <Route path="/transactions/:id" element={<TransactionDetails />} />
           <Route path="/transactions/edit/:id" element={<TransactionEdit />} />
+          <Route path="/loans" element={<LoanList />} />
+<Route path="/loans/add" element={<LoanForm />} />
+<Route path="/loans/:id" element={<LoanDetails />} />
+<Route path="/loans/edit/:id" element={<LoanEdit />} />
+
 
         </Routes>
       </div>

@@ -130,7 +130,7 @@ export default function TransactionForm() {
           <input
             className="form-control"
             name="transactionDate"
-            type="date"
+            type="datetime-local"
             value={form.transactionDate}
             onChange={handleChange}
             onBlur={handleBlur}

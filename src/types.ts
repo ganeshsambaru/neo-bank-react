@@ -22,3 +22,13 @@ export interface Transaction {
   transactionDate: string; // ISO string
   accountId: number;
 }
+
+export interface Loan {
+  id: number;
+  amount: number;
+  interestRate: number;
+  termMonths: number;
+  startDate: string; // ISO string
+  endDate: string; // ISO string
+  customerId: number;
+}
