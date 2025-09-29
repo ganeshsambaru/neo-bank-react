@@ -1,20 +1,23 @@
-import axios from 'axios';
+// src/services/transactionService.ts
 import type { Transaction } from '../types';
+import api from './api'; // ✅ shared axios instance with baseURL + JWT header
 
-const API_URL = 'https://localhost:7168/api/transactions';
+// fetch all transactions
+export const getTransactions = () =>
+  api.get<Transaction[]>('/transactions');
 
-export const getTransactions = () => axios.get<Transaction[]>(API_URL);
-
+// fetch one transaction by id
 export const getTransaction = (id: number) =>
-  axios.get<Transaction>(`${API_URL}/${id}`);
+  api.get<Transaction>(`/transactions/${id}`);
 
-// 🔑 Add accepts Omit<Transaction, 'id'>
+// create new transaction (no id in body)
 export const addTransaction = (transaction: Omit<Transaction, 'id'>) =>
-  axios.post(API_URL, transaction);
+  api.post('/transactions', transaction);
 
-// 🔑 Update accepts Omit<Transaction, 'id'>
+// update existing transaction (no id in body)
 export const updateTransaction = (id: number, transaction: Omit<Transaction, 'id'>) =>
-  axios.put(`${API_URL}/${id}`, transaction);
+  api.put(`/transactions/${id}`, transaction);
 
+// delete transaction
 export const deleteTransaction = (id: number) =>
-  axios.delete(`${API_URL}/${id}`);
+  api.delete(`/transactions/${id}`);

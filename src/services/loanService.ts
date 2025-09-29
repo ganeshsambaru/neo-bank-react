@@ -1,17 +1,23 @@
-import axios from 'axios';
+// src/services/loanService.ts
 import type { Loan } from '../types';
+import api from './api'; // ✅ shared axios instance with baseURL + JWT header
 
-const API_URL = 'https://localhost:7168/api/loans';
+// fetch all loans
+export const getLoans = () =>
+  api.get<Loan[]>('/loans');
 
-export const getLoans = () => axios.get<Loan[]>(API_URL);
+// fetch one loan by id
+export const getLoan = (id: number) =>
+  api.get<Loan>(`/loans/${id}`);
 
-export const getLoan = (id: number) => axios.get<Loan>(`${API_URL}/${id}`);
-
+// create a new loan (no id in body)
 export const addLoan = (loan: Omit<Loan, 'id'>) =>
-  axios.post(API_URL, loan);
+  api.post('/loans', loan);
 
+// update existing loan (no id in body)
 export const updateLoan = (id: number, loan: Omit<Loan, 'id'>) =>
-  axios.put(`${API_URL}/${id}`, loan);
+  api.put(`/loans/${id}`, loan);
 
+// delete a loan
 export const deleteLoan = (id: number) =>
-  axios.delete(`${API_URL}/${id}`);
+  api.delete(`/loans/${id}`);

@@ -1,22 +1,23 @@
 // src/services/customerService.ts
-import axios from 'axios';
 import type { Customer } from '../types';
+import api from './api'; // ✅ our shared axios instance with JWT interceptor
 
-const API_URL = 'https://localhost:7168/api/customers';
-
-// fetch all
-export const getCustomers = () => axios.get<Customer[]>(API_URL);
+// fetch all customers
+export const getCustomers = () =>
+  api.get<Customer[]>('/customers');
 
 // fetch one by id
-export const getCustomer = (id: number) => axios.get<Customer>(`${API_URL}/${id}`);
+export const getCustomer = (id: number) =>
+  api.get<Customer>(`/customers/${id}`);
 
 // create new (no id required)
 export const createCustomer = (customer: Omit<Customer, 'id'>) =>
-  axios.post(API_URL, customer);
+  api.post('/customers', customer);
 
 // update existing (no id required in body)
 export const updateCustomer = (id: number, customer: Omit<Customer, 'id'>) =>
-  axios.put(`${API_URL}/${id}`, customer);
+  api.put(`/customers/${id}`, customer);
 
 // delete
-export const deleteCustomer = (id: number) => axios.delete(`${API_URL}/${id}`);
+export const deleteCustomer = (id: number) =>
+  api.delete(`/customers/${id}`);
